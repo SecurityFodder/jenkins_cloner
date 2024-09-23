@@ -22,18 +22,18 @@ Installation
 Clone the Repository:  Clone this GitHub repository to your local machine.
 
 Bash
-git clone https://github.com/your-username/jenkins-pipeline-cloner.git   
+git clone https://github.com/SecurityFodder/jenkins-cloner.git   
 
 Use code with caution.
 
 Navigate to the Project Directory:
 
 Bash
-cd jenkins-pipeline-cloner
+cd jenkins-cloner
 Use code with caution.
 
 Usage
-Open the Script:  Open the clone_jenkins_pipeline.py file in your preferred text editor or IDE.
+Open the Script:  Open the main.py file in your preferred text editor or IDE.
 
 Configure Jenkins Details:
 
@@ -48,7 +48,7 @@ Use code with caution.
 Run the Script:  Execute the script from your terminal:
 
 Bash
-python clone_jenkins_pipeline.py
+python main.py
 Use code with caution.
 
 Follow the Prompts:  The script will guide you through the cloning process, asking for:
