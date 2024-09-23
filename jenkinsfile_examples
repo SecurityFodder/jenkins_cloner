@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout Main Repository') {
+            steps {
+                // This checks out the repository containing your Jenkinsfile
+                checkout scm
+            }
+        }
+        stage('Checkout Scripts Repository') {
+            steps {
+                // Clone the scripts repository into a subdirectory called 'scripts'
+                dir('scripts') {
+                    git url: 'https://github.com/your_username/scripts-repo.git', branch: 'main'
+                }
+            }
+        }
+        stage('Use Scripts') {
+            steps {
+                // Make scripts executable and run them
+                sh 'chmod +x scripts/*.sh'
+                sh './scripts/your-script.sh'
+            }
+        }
+    }
+}
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Checkout Main Repository') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Checkout Scripts Repository') {
+            steps {
+                dir('scripts') {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[url: 'https://github.com/your_username/scripts-repo.git']]
+                    ])
+                }
+            }
+        }
+        stage('Use Scripts') {
+            steps {
+                sh 'chmod +x scripts/*.sh'
+                sh './scripts/your-script.sh'
+            }
+        }
+    }
+}
+
+
+@Library('my-shared-scripts') _
+
+pipeline {
+    agent any
+    stages {
+        stage('Use Shared Scripts') {
+            steps {
+                // Call a function from the shared library
+                mySharedFunction()
+            }
+        }
+    }
+}
